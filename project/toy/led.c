@@ -28,8 +28,8 @@ void led_update(){
   }
 
   if (switch_state_changed && switch_state == 2){
-    ledFlags |= switch2_state ? LED_RED : 0;
-    ledFlags |= switch2_state ? 0 : LED_GREEN;
+    ledFlags |= switch2_state ? LED_GREEN : 0;
+    ledFlags |= switch2_state ? 0 : LED_RED;
     
     P1OUT &= (0xff^LEDS) | ledFlags;
     P1OUT |= ledFlags;
@@ -37,6 +37,7 @@ void led_update(){
   
   if (switch_state_changed && switch_state == 3){
     ledFlags |= switch3_state ? LED_RED : 0;
+    ledFlags |= switch3_state ? 0 : LED_GREEN;
 
     P1OUT &= (0xff^LEDS) | ledFlags;
     P1OUT |= ledFlags;
