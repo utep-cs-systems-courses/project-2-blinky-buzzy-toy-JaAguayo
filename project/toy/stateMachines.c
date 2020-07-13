@@ -48,7 +48,7 @@ void switch_state_advance(){
     buzzer_set_period(1300);
     break;
   case 2:
-    buzzer_set_period(900);
+    buzzer_set_period(200);
     break;
   case 3:
     buzzer_set_period(700);
