@@ -4,12 +4,6 @@
 #include "switches.h"
 #include "buzzer.h"
 
-int siren[] = {230};
-int twinkle[] = {523,0,0,523,392,392,440,440,392,349,349,330,330,294,294,262};
-int row_row[] = {200};
-int i = 0;
-int j = 0;
-
 char toggle_red(){
   static char state = 0;
 
@@ -51,13 +45,13 @@ void led_state_advance(){
 void switch_state_advance(){
   switch (switch_state){
   case 1:
-    buzzer_set_period(siren);
+    buzzer_set_period(1300);
     break;
   case 2:
-    buzzer_set_period(row_row);
+    buzzer_set_period(900);
     break;
   case 3:
-    buzzer_set_period(twinkle);
+    buzzer_set_period(700);
     break;
   case 4:
     buzzer_off();
