@@ -4,7 +4,7 @@
 #include "switches.h"
 #include "buzzer.h"
 
-char toggle_red(){
+char toggle_red(){ //toggle methods for the state machine, alwayys toggle
   static char state = 0;
 
   switch (state){
@@ -17,10 +17,10 @@ char toggle_red(){
     state = 0;
     break;
   }
-  return 1;
+  return 1;  //led always changes
 }
 
-char toggle_green(){
+char toggle_green(){ //green toggle is based on the red, only if red is on
   char changed = 0;
   if (red_on){
     green_on ^= 1;
@@ -33,7 +33,7 @@ void led_state_advance(){
   char changed = 0;
   
   static enum {R=0,G=1} color = G;
-  switch (color){
+  switch (color){      //state machine for led to blink back and forth
   case R: changed = toggle_red(); color = G; break;
   case G: changed = toggle_green(); color = R; break;
   }
@@ -45,7 +45,7 @@ void led_state_advance(){
 void switch_state_advance(){
   switch (switch_state){
   case 1:
-    buzzer_set_period(1300);
+    buzzer_set_period(1300); //buzzer is set to a input when a certain button is pressed
     break;
   case 2:
     buzzer_set_period(200);
@@ -57,5 +57,5 @@ void switch_state_advance(){
     buzzer_off();
     break;
   }
-  led_update();
+  led_update(); //after the state is set it will update the leds accordingly
 }
